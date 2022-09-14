@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Create a public reference of a new GameObject caled Zombie
+    // Have a public variable of a new GameObject caled Zombie
     
 
     public void Spawn()

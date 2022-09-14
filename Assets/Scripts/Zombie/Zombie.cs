@@ -25,9 +25,9 @@ public class Zombie : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerController>().transform.position, Time.deltaTime * Speed);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float Damage)
     {
-        Health -= damage;
+        Health -= Damage;
         if (Health <= 0)
         {
             GetComponent<ZombieDeathManager>().Die();
