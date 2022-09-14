@@ -8,11 +8,29 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "New Wave Settings", menuName = "Game/Wave Settings")]
 public class WaveSettings : ScriptableObject
 {
-    [HideInInspector] public WaveSetting SpawnInterval = new WaveSetting(5, 9, 1, 0);
+    /// <summary>
+    /// Amount of seconds to wait before spawning new zombies.
+    /// </summary>
+    [HideInInspector] public WaveSetting SpawnInterval = new WaveSetting(2, 4, 1, 0);
+    /// <summary>
+    /// Amount of most zombies that can be alive at a time.
+    /// </summary>
     [HideInInspector] public WaveSetting MostZombieCount = new WaveSetting(5, 7, 1, 0);
+    /// <summary>
+    /// Amount of zombies that spawn at once.
+    /// </summary>
     [HideInInspector] public WaveSetting SpawnGroupCount = new WaveSetting(1, 2, 1, 0);
+    /// <summary>
+    /// Health a zombie will spawn with.
+    /// </summary>
     [HideInInspector] public WaveSetting ZombieHealth = new WaveSetting(100, 110, 1, 0);
+    /// <summary>
+    /// Damage a zombie will deal.
+    /// </summary>
     [HideInInspector] public WaveSetting ZombieDamage = new WaveSetting(10, 15, 1, 0);
+    /// <summary>
+    /// Speed a zombie can run.
+    /// </summary>
     [HideInInspector] public WaveSetting ZombieSpeed = new WaveSetting(4, 4.5f, 1, 0);
 
 
