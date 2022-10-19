@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpHeight;
     bool groundedPlayer;
 
+    [Header("Gun")]
+    [SerializeField] float camZoomSpeed = 0.4f;
+    [SerializeField] float gunZoomSpeed = 0.4f;
+    [SerializeField] Transform gun, gunIdlePos, gunZoomPos;
+
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
     [HideInInspector] public CharacterController controller = null;
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
             UpdateMouseLook();
         UpdateMovement();
         UpdateJump();
+        UpdateZoom();
         // Usually we lock movement here but we need gravity to apply so we don't do that and instead call it in UpdateMovement()
     }
 
@@ -133,5 +139,25 @@ public class PlayerController : MonoBehaviour
     void UpdateJump()
     {
         
+    }
+
+    void UpdateZoom()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            foreach (Camera cam in FindObjectsOfType<Camera>(useDeltaTime))
+            {
+                LerpSolution.lerpCamFov(cam, 40, camZoomSpeed);
+            }
+            LerpSolution.lerpPosition(gun, gunZoomPos.position, gunZoomSpeed, true);
+        }
+        else
+        {
+            foreach (Camera cam in FindObjectsOfType<Camera>(useDeltaTime))
+            {
+                LerpSolution.lerpCamFov(cam, 60, camZoomSpeed);
+            }
+            LerpSolution.lerpPosition(gun, gunIdlePos.position, gunZoomSpeed, true);
+        }
     }
 }

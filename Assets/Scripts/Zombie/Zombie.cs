@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
@@ -8,11 +9,25 @@ public class Zombie : MonoBehaviour
     [SerializeField] float Damage;
     [SerializeField] float Speed;
 
+    NavMeshAgent agent;
+    PlayerController controller;
+
     private void OnEnable()
     {
+        WaveSystem.AliveZombies++;
+
         Health = WaveVariable.Value(WaveSystem.CurrentSettings.ZombieHealth);
         Damage = WaveVariable.Value(WaveSystem.CurrentSettings.ZombieDamage);
         Speed = WaveVariable.Value(WaveSystem.CurrentSettings.ZombieSpeed);
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
+
+        controller = FindObjectOfType<PlayerController>();
+    }
+
+    private void Start()
+    {
     }
 
     private void Update()
@@ -22,7 +37,12 @@ public class Zombie : MonoBehaviour
 
     private void MoveZombie()
     {
-        transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerController>().transform.position, Time.deltaTime * Speed);
+        agent.SetDestination(PlayerPos());
+    }
+
+    Vector3 PlayerPos()
+    {
+        return new Vector3(controller.transform.position.x, transform.position.y, controller.transform.position.z);
     }
 
     public void TakeDamage(float Damage)
