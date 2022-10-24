@@ -26,10 +26,6 @@ public class Zombie : MonoBehaviour
         controller = FindObjectOfType<PlayerController>();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         MoveZombie();

@@ -15,6 +15,7 @@ public class GunShootManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playercam.transform.position, playercam.transform.TransformDirection(Vector3.forward), out hit, Range))
         {
+            Debug.Log("Shot!" + hit.transform.name);
             if (hit.transform.tag == "Zombie")
             {
                 hit.transform.GetComponent<Zombie>().TakeDamage(Damage); 

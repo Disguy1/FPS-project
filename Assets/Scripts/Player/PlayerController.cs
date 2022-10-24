@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     bool groundedPlayer;
 
     [Header("Gun")]
+    GunShootManager shootManager;
+    [SerializeField] float shootInterval = 0.1f;
+    float shootTime;
     [SerializeField] float camZoomSpeed = 0.4f;
     [SerializeField] float gunZoomSpeed = 0.4f;
     [SerializeField] Transform gun, gunIdlePos, gunZoomPos;
@@ -43,8 +46,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        shootManager = FindObjectOfType<GunShootManager>();
         updateCursorState(lockCursor, showCursor);
-        
     }
 
     public void updateCursorState(bool shouldLockCursor, bool shouldShowCursor)
@@ -61,13 +64,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(!lockLook)
+        if (!lockLook)
             UpdateMouseLook();
         UpdateMovement();
         UpdateJump();
         UpdateZoom();
+        UpdateShoot();
         // Usually we lock movement here but we need gravity to apply so we don't do that and instead call it in UpdateMovement()
     }
+
 
     void UpdateMouseLook()
     {
@@ -160,4 +165,15 @@ public class PlayerController : MonoBehaviour
             LerpSolution.lerpPosition(gun, gunIdlePos.position, gunZoomSpeed, true);
         }
     }
+
+    private void UpdateShoot()
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if()
+            shootManager.Shoot(40, Mathf.Infinity);
+
+        }
+    }
+
 }

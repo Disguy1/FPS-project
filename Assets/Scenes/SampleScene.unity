@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 235049355}
   - component: {fileID: 235049360}
   - component: {fileID: 235049359}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,6 +481,7 @@ MonoBehaviour:
   lockLook: 0
   useDeltaTime: 1
   jumpHeight: 2
+  shootInterval: 0
   camZoomSpeed: 3
   gunZoomSpeed: 3
   gun: {fileID: 784677072}
@@ -1108,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 96175070514046763, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 191409928675832038, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1118,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 267772776601830094, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 687007710982979328, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1128,12 +1129,12 @@ PrefabInstance:
     - target: {fileID: 819239987778857913, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1259917867357090113, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2063062577283622104, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1153,12 +1154,12 @@ PrefabInstance:
     - target: {fileID: 2691561490524668355, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2744464343524879103, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4344204992611456401, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1168,7 +1169,7 @@ PrefabInstance:
     - target: {fileID: 4728510746532183041, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5201409568055546034, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1178,37 +1179,37 @@ PrefabInstance:
     - target: {fileID: 5354535366371261861, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5513438959684986531, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5623275439367771731, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5862607341580856085, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5887679143193172336, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5889205210387538712, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6000235038445654721, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6101929661306077554, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1218,7 +1219,7 @@ PrefabInstance:
     - target: {fileID: 6101929661306077554, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6910131642394860488, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1293,22 +1294,22 @@ PrefabInstance:
     - target: {fileID: 6944430424771258779, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7422946973980094075, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7501189478857983297, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7789921074515136576, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7922987454367661324, guid: fca4d7e3280cad54fa81767bcc633276,
         type: 3}
@@ -1605,7 +1606,7 @@ GameObject:
   - component: {fileID: 1073633291}
   - component: {fileID: 1073633294}
   - component: {fileID: 1073633292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1975,7 +1976,7 @@ GameObject:
   - component: {fileID: 1338036716}
   - component: {fileID: 1338036715}
   - component: {fileID: 1338036718}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2225,6 +2226,7 @@ GameObject:
   - component: {fileID: 1700112111}
   - component: {fileID: 1700112113}
   - component: {fileID: 1700112114}
+  - component: {fileID: 1700112115}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2312,6 +2314,19 @@ MonoBehaviour:
   - {fileID: 909477596}
   - {fileID: 1095449915}
   - {fileID: 321008740}
+--- !u!114 &1700112115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700112108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5422f22221dfde44f8e2056b5c588adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playercam: {fileID: 1338036716}
 --- !u!1 &1821952569
 GameObject:
   m_ObjectHideFlags: 0
