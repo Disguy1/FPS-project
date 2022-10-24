@@ -17,15 +17,17 @@ public class WaveSystem : MonoBehaviour
     public static int AliveZombies = 0;
     [SerializeField] int AliveZombiesForInspector;
 
+    private void OnEnable()
+    {
+        WaveNum = 1;
+        AliveZombies = 0;
+    }
+
     private void Update()
     {
         CurrentSettings = currentSettings;
 
         AliveZombiesForInspector = AliveZombies;
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            WaveSystem.AliveZombies--;
-        }
     }
 
     private void Awake()

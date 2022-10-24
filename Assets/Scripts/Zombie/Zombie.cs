@@ -8,6 +8,8 @@ public class Zombie : MonoBehaviour
     [SerializeField] float Health;
     [SerializeField] float Damage;
     [SerializeField] float Speed;
+    [SerializeField] float attackInterval = 1f;
+    float attackTime;
 
     NavMeshAgent agent;
     PlayerController controller;
@@ -29,11 +31,39 @@ public class Zombie : MonoBehaviour
     private void Update()
     {
         MoveZombie();
+        CheckForAttack();
     }
 
     private void MoveZombie()
     {
         agent.SetDestination(PlayerPos());
+    }
+
+    void CheckForAttack()
+    {
+        if (Vector3.Distance(PlayerPos(), transform.position) <= 2)
+        {
+            agent.isStopped = true;
+            Attack();
+        }
+        else
+        {
+            agent.isStopped = false;
+            attackTime = 0;
+        }
+    }
+
+    void Attack()
+    {
+        if (attackTime <= 0)
+        {
+            controller.health -= Damage;
+            attackTime = attackInterval;
+        }
+        else
+        {
+            attackTime -= Time.deltaTime;
+        }
     }
 
     Vector3 PlayerPos()

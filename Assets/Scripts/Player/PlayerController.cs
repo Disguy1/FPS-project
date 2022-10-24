@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Health")]
+    public float health = 100f;
+    [SerializeField] Slider healthBar;
+    [Header("Wtf")]
     public Transform playerCamera = null;
     [SerializeField] float mouseSensitivity = 3.5f;
     public bool invertMouse;
@@ -23,12 +29,16 @@ public class PlayerController : MonoBehaviour
     bool groundedPlayer;
 
     [Header("Gun")]
+    bool CanShoot = true;
     GunShootManager shootManager;
     [SerializeField] float shootInterval = 0.1f;
+    [SerializeField] Animator gunAnim;
     float shootTime;
     [SerializeField] float camZoomSpeed = 0.4f;
     [SerializeField] float gunZoomSpeed = 0.4f;
     [SerializeField] Transform gun, gunIdlePos, gunZoomPos;
+
+    [Header("Wtf")]
 
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
@@ -70,7 +80,18 @@ public class PlayerController : MonoBehaviour
         UpdateJump();
         UpdateZoom();
         UpdateShoot();
+        UpdateHealth();
         // Usually we lock movement here but we need gravity to apply so we don't do that and instead call it in UpdateMovement()
+    }
+
+    void UpdateHealth()
+    {
+        healthBar.value = health / 100;
+        if (health <= 0)
+        {
+            LerpSolution.StopCoroutines();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
 
@@ -95,10 +116,6 @@ public class PlayerController : MonoBehaviour
         if(!lockMovement)
         {
             targetDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if(Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1))
-            {
-                targetDir = new Vector2(0, 1);
-            }
         }
         targetDir.Normalize();
 
@@ -168,12 +185,33 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateShoot()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && CanShoot && GunAmmoManager.CurrentAmmo > 0)
         {
-            if()
-            shootManager.Shoot(40, Mathf.Infinity);
+            if (shootTime <= 0)
+            {
+                shootManager.Shoot(40, Mathf.Infinity);
+                GunAmmoManager.CurrentAmmo--;
+                gunAnim.SetTrigger("Shoot");
+                Debug.Log("SHOOT");
+                shootTime = shootInterval;
+            }
 
         }
+        shootTime -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.R) && CanShoot)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        CanShoot = false;
+        gunAnim.SetTrigger("Reload");
+        yield return new WaitForSeconds(2f);
+        GunAmmoManager.CurrentAmmo = GunAmmoManager.MaxAmmo;
+        CanShoot = true;
     }
 
 }
