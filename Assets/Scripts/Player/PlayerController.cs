@@ -89,9 +89,29 @@ public class PlayerController : MonoBehaviour
         healthBar.value = health / 100;
         if (health <= 0)
         {
-            LerpSolution.StopCoroutines();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            health = 100;
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        lockMovement = true;
+        lockLook = true;
+        gun.gameObject.SetActive(false);
+        WaveSystem.CanSpawn = false;
+        foreach (Zombie zombie in FindObjectsOfType<Zombie>()) Destroy(zombie.gameObject);
+
+        LerpSolution.StopCoroutines();
+    
+        LerpSolution.lerpPosition(playerCamera, GameObject.Find("Cam Die Pos").transform.position, 1);
+        LerpSolution.lerpRotation(playerCamera, GameObject.Find("Cam Die Pos").transform.rotation, 1);
+
+        yield return new WaitForSeconds(3f);
+
+        WaveSystem.CanSpawn = true;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
@@ -177,7 +197,7 @@ public class PlayerController : MonoBehaviour
         {
             foreach (Camera cam in FindObjectsOfType<Camera>(useDeltaTime))
             {
-                LerpSolution.lerpCamFov(cam, 60, camZoomSpeed);
+                LerpSolution.lerpCamFov(cam, 80, camZoomSpeed);
             }
             LerpSolution.lerpPosition(gun, gunIdlePos.position, gunZoomSpeed, true);
         }

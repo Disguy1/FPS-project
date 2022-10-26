@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveSystem : MonoBehaviour
 {
     [Header("Wave Manager")]
-    public bool CanSpawn = true;
+    public static bool CanSpawn = true;
     public static int WaveNum = 1;
 
     [Header("Wave Variables")]
@@ -15,12 +15,14 @@ public class WaveSystem : MonoBehaviour
 
     SpawnManager _Spawn;
     public static int AliveZombies = 0;
+    public static int ZombiesKilled = 0;
     [SerializeField] int AliveZombiesForInspector;
 
     private void OnEnable()
     {
         WaveNum = 1;
         AliveZombies = 0;
+        ZombiesKilled = 0;
     }
 
     private void Update()
